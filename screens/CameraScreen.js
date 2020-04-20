@@ -14,6 +14,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Toast from "react-native-simple-toast";
 import api from "../services/api";
+import Colors from "../constants/Colors";
 
 export default function CameraScreen() {
   const camRef = useRef(null);
@@ -91,10 +92,7 @@ export default function CameraScreen() {
       ) : (
         <Text>Please Reload you App</Text>
       )}
-      <TouchableOpacity
-        style={styles.tabBarInfoContainer}
-        onPress={takePicture}
-      >
+      <TouchableOpacity style={styles.tabBarPickImage} onPress={takePicture}>
         <MaterialCommunityIcons name="camera-iris" size={40} color="#646464" />
       </TouchableOpacity>
       {capturedPhoto && (
@@ -140,15 +138,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: "center",
   },
-  codeHighlightText: {
-    color: "rgba(96,100,109, 0.8)",
-  },
-  codeHighlightContainer: {
-    backgroundColor: "rgba(0,0,0,0.05)",
-    borderRadius: 3,
-    paddingHorizontal: 4,
-  },
-  tabBarInfoContainer: {
+  tabBarPickImage: {
     position: "absolute",
     bottom: 0,
     left: 0,
@@ -165,16 +155,8 @@ const styles = StyleSheet.create({
       },
     }),
     alignItems: "center",
-    backgroundColor: "#fbfbfb",
+    backgroundColor: Colors.background,
     paddingVertical: 10,
-  },
-  tabBarInfoText: {
-    fontSize: 17,
-    color: "rgba(96,100,109, 1)",
-    textAlign: "center",
-  },
-  navigationFilename: {
-    marginTop: 5,
   },
   pictureFooter: {
     display: "flex",
