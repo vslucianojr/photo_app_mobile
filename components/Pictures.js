@@ -28,9 +28,9 @@ export default function Pictures({ createdAt, name, size, url }) {
           </View>
           <View style={{ flexDirection: "row" }}>
             <Text style={{ fontWeight: "bold" }}>Created At: </Text>
-            <Text>
-              {`${moment(createdAt).format("MMMM Do YYYY, h:mm:ss a")}`}
-            </Text>
+            <Text>{`${moment(createdAt).format("MMMM Do YYYY")}`}</Text>
+            <Text style={{ fontWeight: "bold" }}> | </Text>
+            <Text>{`${moment(createdAt).startOf("seconds").fromNow()}`}</Text>
           </View>
           <View style={{ flexDirection: "row" }}>
             <Text style={{ fontWeight: "bold" }}>Size: </Text>

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Toast from "react-native-simple-toast";
 import api from "../services/api";
@@ -23,21 +29,18 @@ export default function UploadsScreen() {
 
   return (
     <View style={{ flex: 1 }}>
-      <ScrollView
-        style={styles.container}
-        contentContainerStyle={styles.contentContainer}
-      >
-        {!!uploads &&
-          uploads.map(({ createdAt, size, url, key }, index) => (
-            <Pictures
-              key={index}
-              createdAt={createdAt}
-              name={key}
-              size={size}
-              url={url}
-            />
-          ))}
-      </ScrollView>
+      <FlatList
+        data={uploads}
+        renderItem={({ item }) => (
+          <Pictures
+            createdAt={item.createdAt}
+            name={item.key}
+            size={item.size}
+            url={item.url}
+          />
+        )}
+        keyExtractor={(item) => item._id}
+      />
       <TouchableOpacity style={styles.reloadButton} onPress={getUploadsList}>
         <MaterialCommunityIcons name="cloud-download" size={35} color="#fff" />
       </TouchableOpacity>
